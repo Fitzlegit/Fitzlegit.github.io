@@ -1,0 +1,27 @@
+---
+layout: post
+title:      "Rails Project"
+date:       2020-02-24 00:34:51 +0000
+permalink:  rails_project
+---
+
+
+Wow! Let’s just say I’m glad to be on the other side of this project. I definitely bit off a lot more than I could chew for the time constraints but learned a lot that I’ll be digesting for some time. This was a journey from a naive Sinatra developer to a Rails… humble forever student. There’s a lot to get into in Rails and I got lost in the abyss gems and features. 
+
+I started my project wanting to build out the framework for a more robust application that acted as a support application for a youth program. Users would be split into instructors and students; they could join/post to different groups that they belonged to, communicate and do tons of fun things… Yeah, alright a little ambitious grasshopper. I distilled the project down to just building out one distinct feature; a forum, which I believed would be relatively easy.  However as I continued through with building my database relationship, I felt like I was trying to jam the wrong shape into the puzzle hole. Most just get the right piece and move along and quietly slink away from their mistake, but I’m a developer in training! I was committed. I hauled out my proverbial construction tools and started hacking away. 
+
+I created a relationship where posts belonged to membership and users had many memberships and many groups through memberships and vice versa with groups. After fiddling around with this model idea I created my project. Rails new… wait for it... right out the gate I was dealing with debugging; my yarn gem and js weren’t getting along very well causing webpack to throw a fit and not install, the error messages also gave false hope of being a relatively easy fix. Turned out the yarn file I had was an imposter and even updating didn’t do the trick yarn, I had to pull a different yarn package from their website and install via different means. 
+
+On to the next hurdle; I decided to take on the devise gem and let it do the heavy lifting in validation for my user model/controller/routes and it was pretty sweet how fast it got things up and running, talk about a powerful gem but with great power comes great responsibility and it was quite a bit to take in. The devise documentation is definitely well written, easy to read but it did take some time to familiarize myself with the gem. I actually embarrassingly deleted my project the first time because I felt so overwhelmed by the devise views. 
+
+Because I restarted this project about three different times with different relational models I built the post before anything else originally. Using the post#index as my root which I later created controller/views to handle everything. The post component might be the only piece that I was able to complete without any real challenges... given that it’s such a common feature, information was ample, we’ve even built one in our learn lessons! My posts controller is actually the only one that has a full CRUD setup, this might have lulled me into a false sense of security. Cue foreshadowing music.
+
+
+My entire project relied on three key ids and being able to manipulate them; one, my current_user which was easy enough, as I mentioned devise handle taking care of setting up my session and storing my current_user. Two, my membership_id which I could only get accurately by solving for x, where x is my current_group_id variable. Once my group problem was solved membership_id followed without issue. Now three, the current_group_id as I mentioned before the user could have many groups through membership and the membership_id was how we determined what group post belonged to and who it belonged to but how could we pull the current_group the user was going to submit to? I found myself in helper methods and wow did I write a few. 
+
+My first attempt was to find the groups that only belong to the user and then try to single them out on the form but then realized that the post model didn’t belong to the group model so I had to figure out another approach. There were several other ways I tried but this read is getting long, I’ll save the suspense and tell you they didn’t work but did lead to some further insight on a few built-in methods. I finally read up on passing params on link_to and then coupled that with saving the group.id into a session variable, modeling how a user login would work only this would be every time the user clicked a group they belonged to the current_group would change… then using a helper method, I would set the membership_id in the form for the post allowing the user to post with the correct user and group.  
+
+As I continued through this project I had to write other helper methods that required a bit of recursion to check if user had a membership to a group yet and just some logic that we often take for granted in the real world, whether something exists or not became a constant issue while setting features throughout my rails app. I also had to learn a deeper understanding of just how ActiveRecords and the relations are working in order to pull the correct information across the app, tough stuff.
+
+All in all, the project is nowhere near what I dreamed it would be and the CSS drove me nuts but it’s pretty satisfying to start seeing the seedling of features working and coming together. I can’t wait to implement js and improve on it. I have a new level of respect for app design. 
+
